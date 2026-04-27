@@ -2,22 +2,47 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Pulling code from GitHub...'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building project...'
+                echo 'Building project using Maven...'
+                sh 'echo mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing project...'
+                echo 'Running test cases...'
+                sh 'echo mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo 'Packaging application...'
+                sh 'echo mvn package'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying project...'
+                echo 'Deploying application to Tomcat server...'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
