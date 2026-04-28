@@ -7,7 +7,6 @@ This project demonstrates a CI/CD pipeline using Jenkins for building, testing, 
 - Jenkins
 - AWS EC2
 - Maven
-- GitHub
 - Tomcat
 
 ## Pipeline Stages
